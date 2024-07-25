@@ -1,19 +1,23 @@
 <?php
 // creare un array di elementi
-$elements = [
+$elements = [ "a", "b", "c", "d"
 
 ];
+// $lunghezza = count($elements);
+// var_dump($_GET['lunghezza']);
+// die();
 
 // scrittura della funzione che prende il numero inserito dalla persona -> se è compreso tra 8 e 32 allora genera una psw
 function generatePsw($number){
-    if($numer >= 8 && $number <= 32){
+    $elements = [ "a", "b", "c", "d"];
+    if($number >= 8 && $number <= 32){
         // creo una stringa vuota
         $pswElement = '';
 
         // finchè i è minore del numero prende un elemento random dell'array e lo inserisce nella stringa
         for($i; $i < $number; $i++){
             // prendere elemento random dall'array
-
+            $element = $elements[rand(0, count($elements)-1)];
             // inserirlo nella stringa
             $pswElement .= $element;
         }  
@@ -28,6 +32,8 @@ function generatePsw($number){
 // se il numero che ha inserito è registrato e non è vuoto allora fai la funzione
 if(isset($_GET['lunghezza']) && !empty($_GET['lunghezza'])){
     $password = generatePsw($_GET['lunghezza']);
+} elseif(isset($_GET['lunghezza']) && strlen($_GET['lunghezza'])=== 0){
+    $password = 'Errore. Devi generare una password di lunghezza compresa fra 8 e 32';
 }
 
 ?>
@@ -50,7 +56,10 @@ if(isset($_GET['lunghezza']) && !empty($_GET['lunghezza'])){
                 <h1>Strong password generator</h1>
                 <h2>Genera una password sicura</h2>
                 <div>
-                    <p>Generare una password di lunghezza compresa fra 8 e 32</p>
+                    <?php if(isset($password)): ?>
+                        <span><?php echo $password ?></span>
+                    <?php endif ?>    
+                    <p>Generare una password di lunghezza compresa fra 8 e 32</p>                    
                 </div> 
 
                 <form action="index.php" method="GET">
