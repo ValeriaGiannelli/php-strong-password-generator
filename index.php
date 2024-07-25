@@ -40,7 +40,7 @@ if(isset($_GET['lunghezza']) && !empty($_GET['lunghezza'])){
                 <h2>Genera una password sicura</h2>
                 <div>
                     <?php if(isset($password)): ?>
-                        <span><?php echo $password ?></span>
+                        <?php echo $password ?>
                     <?php else: ?>  
                     <p>Generare una password di lunghezza compresa fra 8 e 32</p>    
                     <?php endif ?>                  
