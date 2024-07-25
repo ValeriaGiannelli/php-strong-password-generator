@@ -1,12 +1,20 @@
 <?php
 
+// creo 4 array diversi per lettere minuscolo, lettere maiuscolo numeri e caratteri speciali
+$lowerCase = range('a', 'z');
+$upperCase = range('A', 'Z');
+$numbers = range(0, 9);
+$specials = str_split('!?&%$<>^+-*/()[]{}@#_='); //crea un array con la stringa passata
+
+$elements = array_merge($lowerCase, $upperCase, $numbers, $specials); //unisco tutti gli array in uno unico
+
 // includo il file della funzione creata
 require_once __DIR__ . '/functions.php';
 
 
 // se il numero che ha inserito è registrato e non è vuoto allora fai la funzione
 if(isset($_GET['lunghezza']) && !empty($_GET['lunghezza'])){
-    $password = generatePsw($_GET['lunghezza']);
+    $password = generatePsw($_GET['lunghezza'], $elements);
 } elseif(isset($_GET['lunghezza']) && strlen($_GET['lunghezza'])=== 0){
     $password = 'Errore. Devi generare una password di lunghezza compresa fra 8 e 32';
 }
